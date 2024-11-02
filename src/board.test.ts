@@ -139,11 +139,13 @@ describe("Board", () => {
 	describe("sort()", () => {
 		it("should sort Maches by totalScore", () => {
 			const board = new Board();
-			// 3
+
+			// 18
 			board.add("A-B", [
 				{ name: "a", score: 9 },
 				{ name: "b", score: 9 },
 			]);
+
 			// 2
 			board.add("C-D", [
 				{ name: "c", score: 1 },
@@ -161,6 +163,37 @@ describe("Board", () => {
 				"c 1 - d 1", // 2
 				"e 1 - f 1", // 2 added second
 				"a 9 - b 9", // 18
+			]);
+		});
+
+		it("should sort Maches by totalScore and startDate", () => {
+			const board = new Board();
+
+			const sysTimeAfter = new Date(
+				"Sat Nov 02 2024 22:00:00 GMT+0000 (Greenwich Mean Time)",
+			);
+			const sysTimeBefore = new Date(
+				"Sat Nov 02 2024 10:00:00 GMT+0000 (Greenwich Mean Time)",
+			);
+
+			vi.setSystemTime(sysTimeBefore);
+			// 18
+			board.add("A-B", [
+				{ name: "a", score: 9 },
+				{ name: "b", score: 9 },
+			]);
+
+			vi.setSystemTime(sysTimeAfter);
+			// 0
+			board.add("C-D", [{ name: "c" }, { name: "d" }]);
+
+			// 18 with later date
+			board.update("C-D", [9, 9]);
+
+			expect(board.render()).toEqual([
+				//
+				"c 9 - d 9",
+				"a 9 - b 9",
 			]);
 		});
 	});
