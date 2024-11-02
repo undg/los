@@ -124,4 +124,15 @@ describe("Board", () => {
 			warnSpy.mockRestore();
 		});
 	});
+
+	describe("render()", () => {
+		it("should render score board", () => {
+			const board = new Board();
+			board.add("h-a", [
+				{ name: "home", score: 69 },
+				{ name: "away", score: 888 },
+			]);
+			expect(board.render()).toEqual(["home 69 - away 888"]);
+		});
+	});
 });

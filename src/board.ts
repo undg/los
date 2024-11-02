@@ -49,5 +49,12 @@ export class Board {
 		return board.map((b) => b.get());
 	}
 
-	render() {}
+	render() {
+		const board = [...this.#board.values()].map(
+			(b) =>
+				`${b.get().homeTeam} ${b.get().homeScore} - ${b.get().awayTeam} ${b.get().awayScore}`,
+		);
+
+		return board;
+	}
 }
