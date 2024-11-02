@@ -12,12 +12,20 @@ type Teams = [
 
 export class Match {
 	public startTime: Date;
+	public homeTeam = "";
+	public homeScore = 0;
+	public awayTeam = "";
+	public awayScore = 0;
 
 	/**
 	 * Creates a new Match instance.
 	 * @param {Teams} teams - Array containing home and away teams.
 	 */
 	constructor(teams: Teams) {
+		const home = teams[0];
+		const away = teams[1];
 		this.startTime = new Date();
+		this.homeTeam = home.name;
+		this.awayTeam = away.name;
 	}
 }
