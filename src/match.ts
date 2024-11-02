@@ -20,6 +20,7 @@ export class Match {
 		this.#homeScore = home.score ?? this.#homeScore;
 		this.#awayTeam = away.name;
 		this.#awayScore = away.score ?? this.#awayScore;
+		this.#totalScore = this.#homeScore + this.#awayScore;
 	}
 
 	update(homeScore: number, awayScore: number) {

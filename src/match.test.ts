@@ -41,7 +41,16 @@ describe("Match", () => {
 		expect(match.get().awayScore).toEqual(1);
 	});
 
-	it("should have total score", () => {
+	it("should have total score on init", () => {
+		const match = new Match([
+			{ name: "t1", score: 3 },
+			{ name: "t2", score: 2 },
+		]);
+
+		expect(match.get().totalScore).toEqual(5);
+	});
+
+	it("should have total score after update", () => {
 		const match = new Match([{ name: "t1" }, { name: "t2" }]);
 
 		expect(match.get().totalScore).toEqual(0);
