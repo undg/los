@@ -24,6 +24,7 @@
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
 		"prepare": "husky",
+		"release": "release-it",
 		"test": "vitest",
 		"test:inspect": "echo \"open in browser \n==> chrome://inspect <==\"  && vitest --inspect-brk --pool threads --poolOptions.threads.singleThread",
 		"tsc": "tsc"
