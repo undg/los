@@ -1,6 +1,6 @@
 {
-	"name": "los",
-	"version": "0.0.0",
+	"name": "@undg/los",
+	"version": "0.0.1",
 	"description": "Live FootballWorld Cup Scoreboard library that shows all the ongoing matches and their scores.",
 	"repository": {
 		"type": "git",
