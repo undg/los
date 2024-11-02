@@ -1,14 +1,4 @@
-type Team = {
-	name: string;
-	score?: number;
-};
-
-type Teams = [
-	/** home team */
-	Team,
-	/** away team */
-	Team,
-];
+import { Teams } from "./types.js";
 
 export class Match {
 	#startTime: Date;
