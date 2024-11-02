@@ -29,10 +29,11 @@ describe("Board", () => {
 		expect(board.get()[0].awayScore).toEqual(0);
 	});
 
-	it("should add only new match to board", () => {
+	it("should add only new match to board and bark", () => {
 		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
-		const board = new Board();
 		const MATCH_NAME = "t1-t2";
+
+		const board = new Board();
 
 		board.add(MATCH_NAME, [{ name: "t1" }, { name: "t2" }]);
 		expect(board.get()[0].homeScore).toEqual(0);
@@ -58,5 +59,31 @@ describe("Board", () => {
 
 		expect(board.get()[0].homeScore).toEqual(888);
 		expect(board.get()[0].awayScore).toEqual(69);
+	});
+
+	it("should NOT update non existing game and bark", () => {
+		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+		const NOOPE_MATCH = "t800-t1000";
+
+		const board = new Board();
+
+		// Normal behavior
+		board.add("h-a", [
+			{ name: "home", score: 69 },
+			{ name: "away", score: 69 },
+		]);
+
+		// This should do nothing but bark at you in stdout
+		board.update(NOOPE_MATCH, [888, 888]);
+
+		// as expected
+		expect(board.get()).toHaveLength(1);
+		expect(board.get()[0].homeScore).toEqual(69);
+
+		// bark
+		expect(warnSpy).toHaveBeenCalledWith(
+			`Can't update match '${NOOPE_MATCH}'. Please add it first.`,
+		);
+		warnSpy.mockRestore();
 	});
 });
