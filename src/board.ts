@@ -35,7 +35,12 @@ export class Board {
 		this.#board.get(matchName)?.update(homeScore, awayScore);
 	}
 
-	delete() {}
+	delete(matchName: string) {
+		if (!this.#board.has(matchName)) {
+			console.warn(`Can't delete match '${matchName}'. Please add it first.`);
+		}
+		this.#board.delete(matchName);
+	}
 
 	get() {
 		const board = [...this.#board.values()];

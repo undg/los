@@ -86,4 +86,34 @@ describe("Board", () => {
 		);
 		warnSpy.mockRestore();
 	});
+
+	it("should finish match, delete it", () => {
+		const board = new Board();
+
+		board.add("h-a", [{ name: "home" }, { name: "away" }]);
+		expect(board.get()).toHaveLength(1);
+
+		board.add("tA-tB", [{ name: "home" }, { name: "away" }]);
+		expect(board.get()).toHaveLength(2);
+
+		board.delete("tA-tB");
+		expect(board.get()).toHaveLength(1);
+
+		board.delete("h-a");
+		expect(board.get()).toHaveLength(0);
+	});
+
+	it("should handle non existing Match", () => {
+		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+		const NOOPE_MATCH = "t800-t1000";
+		const board = new Board();
+
+		board.delete(NOOPE_MATCH);
+
+		expect(warnSpy).toHaveBeenCalledWith(
+			`Can't delete match '${NOOPE_MATCH}'. Please add it first.`,
+		);
+
+		warnSpy.mockRestore();
+	});
 });
