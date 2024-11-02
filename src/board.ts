@@ -45,16 +45,17 @@ export class Board {
 	}
 
 	get() {
-		const board = [...this.#board.values()];
+		const board = [...this.#board.values()].toSorted(
+			(a, b) => a.get().totalScore - b.get().totalScore,
+		);
 		return board.map((b) => b.get());
 	}
 
 	render() {
-		const board = [...this.#board.values()].map(
-			(b) =>
-				`${b.get().homeTeam} ${b.get().homeScore} - ${b.get().awayTeam} ${b.get().awayScore}`,
-		);
+		const board = this.get();
 
-		return board;
+		return board.map(
+			(b) => `${b.homeTeam} ${b.homeScore} - ${b.awayTeam} ${b.awayScore}`,
+		);
 	}
 }

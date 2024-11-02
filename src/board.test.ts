@@ -135,4 +135,33 @@ describe("Board", () => {
 			expect(board.render()).toEqual(["home 69 - away 888"]);
 		});
 	});
+
+	describe("sort()", () => {
+		it("should sort Maches by totalScore", () => {
+			const board = new Board();
+			// 3
+			board.add("A-B", [
+				{ name: "a", score: 9 },
+				{ name: "b", score: 9 },
+			]);
+			// 2
+			board.add("C-D", [
+				{ name: "c", score: 1 },
+				{ name: "d", score: 1 },
+			]);
+
+			// 2
+			board.add("E-F", [
+				{ name: "e", score: 1 },
+				{ name: "f", score: 1 },
+			]);
+
+			expect(board.render()).toEqual([
+				//
+				"c 1 - d 1", // 2
+				"e 1 - f 1", // 2 added second
+				"a 9 - b 9", // 18
+			]);
+		});
+	});
 });
