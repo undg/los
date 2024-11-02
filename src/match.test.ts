@@ -30,4 +30,14 @@ describe("Match", () => {
 		expect(match.awayTeam).toEqual("t2");
 		expect(match.awayScore).toEqual(9);
 	});
+
+	it("should update score from 0-0 to 2-1", () => {
+		const match = new Match([{ name: "t1" }, { name: "t2" }]);
+		match.update(2, 1);
+
+		expect(match.homeTeam).toEqual("t1");
+		expect(match.homeScore).toEqual(2);
+		expect(match.awayTeam).toEqual("t2");
+		expect(match.awayScore).toEqual(1);
+	});
 });

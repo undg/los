@@ -30,4 +30,9 @@ export class Match {
 		this.awayTeam = away.name;
 		this.awayScore = away.score ?? this.awayScore;
 	}
+
+	update(homeScore: number, awayScore: number) {
+		this.homeScore = homeScore;
+		this.awayScore = awayScore;
+	}
 }
