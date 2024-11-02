@@ -26,6 +26,8 @@ export class Match {
 		const away = teams[1];
 		this.startTime = new Date();
 		this.homeTeam = home.name;
+		this.homeScore = home.score ?? this.homeScore;
 		this.awayTeam = away.name;
+		this.awayScore = away.score ?? this.awayScore;
 	}
 }

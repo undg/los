@@ -19,4 +19,15 @@ describe("Match", () => {
 		expect(match.awayTeam).toEqual("t2");
 		expect(match.awayScore).toEqual(0);
 	});
+
+	it("should store 2 teams with 4-9 score", () => {
+		const match = new Match([
+			{ name: "t1", score: 4 },
+			{ name: "t2", score: 9 },
+		]);
+		expect(match.homeTeam).toEqual("t1");
+		expect(match.homeScore).toEqual(4);
+		expect(match.awayTeam).toEqual("t2");
+		expect(match.awayScore).toEqual(9);
+	});
 });
