@@ -31,6 +31,7 @@ export class Board {
 	update(matchName: string, [homeScore, awayScore]: [number, number]) {
 		if (!this.#board.has(matchName)) {
 			console.warn(`Can't update match '${matchName}'. Please add it first.`);
+			return;
 		}
 		this.#board.get(matchName)?.update(homeScore, awayScore);
 	}
@@ -38,6 +39,7 @@ export class Board {
 	delete(matchName: string) {
 		if (!this.#board.has(matchName)) {
 			console.warn(`Can't delete match '${matchName}'. Please add it first.`);
+			return;
 		}
 		this.#board.delete(matchName);
 	}
