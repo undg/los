@@ -10,4 +10,14 @@ describe("Board", () => {
 		expect(board).toHaveProperty("get");
 		expect(board).toHaveProperty("render");
 	});
+
+	it("should add match to board", () => {
+		const board = new Board();
+		board.add("t1-t2", [{ name: "t1" }, { name: "t2" }]);
+
+		expect(board.get()).toHaveLength(1);
+		board.add("t2-t1", [{ name: "t1" }, { name: "t2" }]);
+
+		expect(board.get()).toHaveLength(2);
+	});
 });
