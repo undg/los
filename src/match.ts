@@ -2,6 +2,7 @@ import { GetMatch, Teams } from "./types.js";
 
 export class Match {
 	#startTime: Date;
+	#totalScore = 0;
 	#homeTeam = "";
 	#homeScore = 0;
 	#awayTeam = "";
@@ -24,11 +25,13 @@ export class Match {
 	update(homeScore: number, awayScore: number) {
 		this.#homeScore = homeScore;
 		this.#awayScore = awayScore;
+		this.#totalScore = this.#homeScore + this.#awayScore;
 	}
 
 	get(): GetMatch {
 		return {
 			startTime: this.#startTime,
+			totalScore: this.#totalScore,
 			homeTeam: this.#homeTeam,
 			homeScore: this.#homeScore,
 			awayTeam: this.#awayTeam,

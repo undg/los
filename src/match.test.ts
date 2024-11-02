@@ -41,6 +41,15 @@ describe("Match", () => {
 		expect(match.get().awayScore).toEqual(1);
 	});
 
+	it("should have total score", () => {
+		const match = new Match([{ name: "t1" }, { name: "t2" }]);
+
+		expect(match.get().totalScore).toEqual(0);
+
+		match.update(2, 1);
+		expect(match.get().totalScore).toEqual(3);
+	});
+
 	it("should get Match data", () => {
 		const match = new Match([{ name: "t1" }, { name: "t2" }]);
 		expect(match.get()).toEqual({
@@ -49,6 +58,7 @@ describe("Match", () => {
 			homeScore: 0,
 			awayTeam: "t2",
 			awayScore: 0,
+			totalScore: 0,
 		});
 	});
 });

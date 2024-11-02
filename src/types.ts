@@ -12,6 +12,7 @@ export type Teams = [
 
 export type GetMatch = {
 	startTime: Date;
+	totalScore: number;
 	homeTeam: string;
 	homeScore: number;
 	awayTeam: string;
