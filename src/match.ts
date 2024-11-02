@@ -11,11 +11,11 @@ type Teams = [
 ];
 
 export class Match {
-	public startTime: Date;
-	public homeTeam = "";
-	public homeScore = 0;
-	public awayTeam = "";
-	public awayScore = 0;
+	private startTime: Date;
+	private homeTeam = "";
+	private homeScore = 0;
+	private awayTeam = "";
+	private awayScore = 0;
 
 	/**
 	 * Creates a new Match instance.
