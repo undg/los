@@ -11,109 +11,117 @@ describe("Board", () => {
 		expect(board).toHaveProperty("render");
 	});
 
-	it("should add match to board", () => {
-		const board = new Board();
-		board.add("t1-t2", [{ name: "t1" }, { name: "t2" }]);
+	describe("add() & get()", () => {
+		it("should add match to board", () => {
+			const board = new Board();
+			board.add("t1-t2", [{ name: "t1" }, { name: "t2" }]);
 
-		expect(board.get()).toHaveLength(1);
-		board.add("t2-t1", [{ name: "t1" }, { name: "t2" }]);
+			expect(board.get()).toHaveLength(1);
+			board.add("t2-t1", [{ name: "t1" }, { name: "t2" }]);
 
-		expect(board.get()).toHaveLength(2);
+			expect(board.get()).toHaveLength(2);
+		});
+
+		it("should get score", () => {
+			const board = new Board();
+			board.add("t1-t2", [{ name: "t1" }, { name: "t2" }]);
+
+			expect(board.get()[0].homeScore).toEqual(0);
+			expect(board.get()[0].awayScore).toEqual(0);
+		});
+
+		it("should add only new match to board and bark", () => {
+			const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+			const MATCH_NAME = "t1-t2";
+
+			const board = new Board();
+
+			board.add(MATCH_NAME, [{ name: "t1" }, { name: "t2" }]);
+			expect(board.get()[0].homeScore).toEqual(0);
+
+			// at this point nothing will change
+			board.add(MATCH_NAME, [
+				{ name: "t1", score: 2 },
+				{ name: "t2", score: 3 },
+			]);
+			expect(board.get()[0].homeScore).toEqual(0);
+
+			// but we have warning in stdout
+			expect(warnSpy).toHaveBeenCalledWith(
+				`Match ${MATCH_NAME} already exists`,
+			);
+
+			warnSpy.mockRestore();
+		});
 	});
 
-	it("should have score", () => {
-		const board = new Board();
-		board.add("t1-t2", [{ name: "t1" }, { name: "t2" }]);
+	describe("update()", () => {
+		it("should update score", () => {
+			const board = new Board();
+			board.add("h-a", [{ name: "home" }, { name: "away" }]);
 
-		expect(board.get()[0].homeScore).toEqual(0);
-		expect(board.get()[0].awayScore).toEqual(0);
+			board.update("h-a", [888, 69]);
+
+			expect(board.get()[0].homeScore).toEqual(888);
+			expect(board.get()[0].awayScore).toEqual(69);
+		});
+
+		it("should NOT update non existing game and bark", () => {
+			const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+			const NOOPE_MATCH = "t800-t1000";
+
+			const board = new Board();
+
+			// Normal behavior
+			board.add("h-a", [
+				{ name: "home", score: 69 },
+				{ name: "away", score: 69 },
+			]);
+
+			// This should do nothing but bark at you in stdout
+			board.update(NOOPE_MATCH, [888, 888]);
+
+			// as expected
+			expect(board.get()).toHaveLength(1);
+			expect(board.get()[0].homeScore).toEqual(69);
+
+			// bark
+			expect(warnSpy).toHaveBeenCalledWith(
+				`Can't update match '${NOOPE_MATCH}'. Please add it first.`,
+			);
+			warnSpy.mockRestore();
+		});
 	});
 
-	it("should add only new match to board and bark", () => {
-		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
-		const MATCH_NAME = "t1-t2";
+	describe("delete()", () => {
+		it("should finish match, delete it", () => {
+			const board = new Board();
 
-		const board = new Board();
+			board.add("h-a", [{ name: "home" }, { name: "away" }]);
+			expect(board.get()).toHaveLength(1);
 
-		board.add(MATCH_NAME, [{ name: "t1" }, { name: "t2" }]);
-		expect(board.get()[0].homeScore).toEqual(0);
+			board.add("tA-tB", [{ name: "home" }, { name: "away" }]);
+			expect(board.get()).toHaveLength(2);
 
-		// at this point nothing will change
-		board.add(MATCH_NAME, [
-			{ name: "t1", score: 2 },
-			{ name: "t2", score: 3 },
-		]);
-		expect(board.get()[0].homeScore).toEqual(0);
+			board.delete("tA-tB");
+			expect(board.get()).toHaveLength(1);
 
-		// but we have warning in stdout
-		expect(warnSpy).toHaveBeenCalledWith(`Match ${MATCH_NAME} already exists`);
+			board.delete("h-a");
+			expect(board.get()).toHaveLength(0);
+		});
 
-		warnSpy.mockRestore();
-	});
+		it("should handle non existing Match", () => {
+			const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+			const NOOPE_MATCH = "t800-t1000";
+			const board = new Board();
 
-	it("should update score", () => {
-		const board = new Board();
-		board.add("h-a", [{ name: "home" }, { name: "away" }]);
+			board.delete(NOOPE_MATCH);
 
-		board.update("h-a", [888, 69]);
+			expect(warnSpy).toHaveBeenCalledWith(
+				`Can't delete match '${NOOPE_MATCH}'. Please add it first.`,
+			);
 
-		expect(board.get()[0].homeScore).toEqual(888);
-		expect(board.get()[0].awayScore).toEqual(69);
-	});
-
-	it("should NOT update non existing game and bark", () => {
-		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
-		const NOOPE_MATCH = "t800-t1000";
-
-		const board = new Board();
-
-		// Normal behavior
-		board.add("h-a", [
-			{ name: "home", score: 69 },
-			{ name: "away", score: 69 },
-		]);
-
-		// This should do nothing but bark at you in stdout
-		board.update(NOOPE_MATCH, [888, 888]);
-
-		// as expected
-		expect(board.get()).toHaveLength(1);
-		expect(board.get()[0].homeScore).toEqual(69);
-
-		// bark
-		expect(warnSpy).toHaveBeenCalledWith(
-			`Can't update match '${NOOPE_MATCH}'. Please add it first.`,
-		);
-		warnSpy.mockRestore();
-	});
-
-	it("should finish match, delete it", () => {
-		const board = new Board();
-
-		board.add("h-a", [{ name: "home" }, { name: "away" }]);
-		expect(board.get()).toHaveLength(1);
-
-		board.add("tA-tB", [{ name: "home" }, { name: "away" }]);
-		expect(board.get()).toHaveLength(2);
-
-		board.delete("tA-tB");
-		expect(board.get()).toHaveLength(1);
-
-		board.delete("h-a");
-		expect(board.get()).toHaveLength(0);
-	});
-
-	it("should handle non existing Match", () => {
-		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
-		const NOOPE_MATCH = "t800-t1000";
-		const board = new Board();
-
-		board.delete(NOOPE_MATCH);
-
-		expect(warnSpy).toHaveBeenCalledWith(
-			`Can't delete match '${NOOPE_MATCH}'. Please add it first.`,
-		);
-
-		warnSpy.mockRestore();
+			warnSpy.mockRestore();
+		});
 	});
 });

@@ -48,5 +48,6 @@ export class Board {
 		const board = [...this.#board.values()];
 		return board.map((b) => b.get());
 	}
+
 	render() {}
 }
