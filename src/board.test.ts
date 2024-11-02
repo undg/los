@@ -20,4 +20,12 @@ describe("Board", () => {
 
 		expect(board.get()).toHaveLength(2);
 	});
+
+	it("should have score", () => {
+		const board = new Board();
+		board.add("t1-t2", [{ name: "t1" }, { name: "t2" }]);
+
+		expect(board.get()[0].homeScore).toEqual(0);
+		expect(board.get()[0].awayScore).toEqual(0);
+	});
 });

@@ -9,3 +9,11 @@ export type Teams = [
 	/** away team */
 	Team,
 ];
+
+export type GetMatch = {
+	startTime: Date;
+	homeTeam: string;
+	homeScore: number;
+	awayTeam: string;
+	awayScore: number;
+};

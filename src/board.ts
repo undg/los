@@ -1,7 +1,8 @@
-import { Teams } from "./types.js";
+import { Match } from "./match.js";
+import { GetMatch, Teams } from "./types.js";
 
 export class Board {
-	#board = new Map<string, Teams>();
+	#board = new Map<string, GetMatch>();
 
 	constructor() {}
 
@@ -17,7 +18,12 @@ export class Board {
 	 * });
 	 */
 	add(matchName: string, teams: Teams) {
-		this.#board.set(matchName, teams);
+		const match = new Match(teams);
+		// if (this.#board.has(matchName)) {
+		//   console.warn(`Match ${matchName} already exists`);
+		// } else {
+		this.#board.set(matchName, match.get());
+		// }
 	}
 
 	update() {}

@@ -1,4 +1,4 @@
-import { Teams } from "./types.js";
+import { GetMatch, Teams } from "./types.js";
 
 export class Match {
 	#startTime: Date;
@@ -26,7 +26,7 @@ export class Match {
 		this.#awayScore = awayScore;
 	}
 
-	get() {
+	get(): GetMatch {
 		return {
 			startTime: this.#startTime,
 			homeTeam: this.#homeTeam,
