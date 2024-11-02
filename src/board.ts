@@ -19,11 +19,11 @@ export class Board {
 	 */
 	add(matchName: string, teams: Teams) {
 		const match = new Match(teams);
-		// if (this.#board.has(matchName)) {
-		//   console.warn(`Match ${matchName} already exists`);
-		// } else {
+		if (this.#board.has(matchName)) {
+			console.warn(`Match ${matchName} already exists`);
+			return;
+		}
 		this.#board.set(matchName, match.get());
-		// }
 	}
 
 	update() {}

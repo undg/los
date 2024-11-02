@@ -28,4 +28,25 @@ describe("Board", () => {
 		expect(board.get()[0].homeScore).toEqual(0);
 		expect(board.get()[0].awayScore).toEqual(0);
 	});
+
+	it("should add only new match to board", () => {
+		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+		const board = new Board();
+		const MATCH_NAME = "t1-t2";
+
+		board.add(MATCH_NAME, [{ name: "t1" }, { name: "t2" }]);
+		expect(board.get()[0].homeScore).toEqual(0);
+
+		// at this point nothing will change
+		board.add(MATCH_NAME, [
+			{ name: "t1", score: 2 },
+			{ name: "t2", score: 3 },
+		]);
+		expect(board.get()[0].homeScore).toEqual(0);
+
+		// but we have warning in stdout
+		expect(warnSpy).toHaveBeenCalledWith(`Match ${MATCH_NAME} already exists`);
+
+		warnSpy.mockRestore();
+	});
 });
