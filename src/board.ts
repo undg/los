@@ -28,8 +28,8 @@ export class Board {
 		this.#board.set(matchName, match);
 	}
 
-	update(matchName: string, [homeScore, awayScore]) {
-		// this.#board.get(matchName)
+	update(matchName: string, [homeScore, awayScore]: [number, number]) {
+		this.#board.get(matchName)?.update(homeScore, awayScore);
 	}
 
 	delete() {}

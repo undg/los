@@ -49,4 +49,14 @@ describe("Board", () => {
 
 		warnSpy.mockRestore();
 	});
+
+	it("should update score", () => {
+		const board = new Board();
+		board.add("h-a", [{ name: "home" }, { name: "away" }]);
+
+		board.update("h-a", [888, 69]);
+
+		expect(board.get()[0].homeScore).toEqual(888);
+		expect(board.get()[0].awayScore).toEqual(69);
+	});
 });
