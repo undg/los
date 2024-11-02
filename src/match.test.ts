@@ -40,4 +40,15 @@ describe("Match", () => {
 		expect(match.awayTeam).toEqual("t2");
 		expect(match.awayScore).toEqual(1);
 	});
+
+	it("should get Match data", () => {
+		const match = new Match([{ name: "t1" }, { name: "t2" }]);
+		expect(match.get()).toEqual({
+			startTime: sysTime,
+			homeTeam: "t1",
+			homeScore: 0,
+			awayTeam: "t2",
+			awayScore: 0,
+		});
+	});
 });

@@ -35,4 +35,14 @@ export class Match {
 		this.homeScore = homeScore;
 		this.awayScore = awayScore;
 	}
+
+	get() {
+		return {
+			startTime: this.startTime,
+			homeTeam: this.homeTeam,
+			homeScore: this.homeScore,
+			awayTeam: this.awayTeam,
+			awayScore: this.awayScore,
+		};
+	}
 }
