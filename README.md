@@ -27,10 +27,13 @@ pnpm i los
 import los from "los";
 
 const board = new los.board();
-board.add("team1-team2", [{ name: "team1" }, { name: "team2" }]); // Start a new match, assuming initial score 0 – 0 and adding it the scoreboard.
-board.add("team3-team4", [{ name: "team3" }, { name: "team4" }], [3, 2]); // Start a new match, assuming initial score 3 – 2 and adding it to the scoreboard.
-board.update("team1-team2", [1, 0]); // Update score as a pair of absolute scores: home team score and away
-board.delete("team1-team2"); // Finish match currently in progress. This removes a match from the scoreboard.
+board.add("MEX-CAN", [{ name: "Mexico" }, { name: "Canada" }]); // Start a new match, assuming initial score 0 – 0 and adding it the scoreboard.
+board.add("ESP-BRA", [
+	{ name: "Spain", score: 3 },
+	{ name: "Brazil", score: 2 },
+]); // Start a new match, assuming initial score 3 – 2 and adding it to the scoreboard.
+board.update("MEX-CAN", [1, 0]); // Update score as a pair of absolute scores: home team score and away
+board.delete("MEX-CAN"); // Finish match currently in progress. This removes a match from the scoreboard.
 board.get(); // Get a summary of matches in progress ordered by their total score. The matches with the same total score will be returned ordered by the most recently started match in the scoreboard.
 ```
 
