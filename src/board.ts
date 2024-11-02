@@ -2,7 +2,7 @@ import { Match } from "./match.js";
 import { GetMatch, Teams } from "./types.js";
 
 export class Board {
-	#board = new Map<string, GetMatch>();
+	#board = new Map<string, Match>();
 
 	constructor() {}
 
@@ -19,18 +19,24 @@ export class Board {
 	 */
 	add(matchName: string, teams: Teams) {
 		const match = new Match(teams);
+
 		if (this.#board.has(matchName)) {
 			console.warn(`Match ${matchName} already exists`);
 			return;
 		}
-		this.#board.set(matchName, match.get());
+
+		this.#board.set(matchName, match);
 	}
 
-	update() {}
+	update(matchName: string, [homeScore, awayScore]) {
+		// this.#board.get(matchName)
+	}
+
 	delete() {}
+
 	get() {
 		const board = [...this.#board.values()];
-		return board;
+		return board.map((b) => b.get());
 	}
 	render() {}
 }
