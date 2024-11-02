@@ -35,6 +35,7 @@ board.add("ESP-BRA", [
 board.update("MEX-CAN", [1, 0]); // Update score as a pair of absolute scores: home team score and away
 board.delete("MEX-CAN"); // Finish match currently in progress. This removes a match from the scoreboard.
 board.get(); // Get a summary of matches in progress ordered by their total score. The matches with the same total score will be returned ordered by the most recently started match in the scoreboard.
+board.render(); // same as get(), but return array of strings if format: "Uruguay 6 - Italy 6"
 ```
 
 ## Contributors

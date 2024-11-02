@@ -8,5 +8,6 @@ describe("Board", () => {
 		expect(board).toHaveProperty("update");
 		expect(board).toHaveProperty("delete");
 		expect(board).toHaveProperty("get");
+		expect(board).toHaveProperty("render");
 	});
 });
