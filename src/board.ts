@@ -45,17 +45,16 @@ export class Board {
 	}
 
 	get() {
-		const board = [...this.#board.values()].toSorted((a, b) => {
-			const prev = a.get();
-			const next = b.get();
+		const board = [...this.#board.values()]
+			.map((b) => b.get())
+			.toSorted((a, b) => {
+				if (a.totalScore === b.totalScore) {
+					return b.startTime.getTime() - a.startTime.getTime();
+				}
 
-			if (prev.totalScore === next.totalScore) {
-				return next.startTime.getTime() - prev.startTime.getTime();
-			}
-
-			return prev.totalScore - next.totalScore;
-		});
-		return board.map((b) => b.get());
+				return a.totalScore - b.totalScore;
+			});
+		return board;
 	}
 
 	render() {
