@@ -18,8 +18,8 @@
 ## Usage
 
 ```shell
-git clone https://github.com/undg/pos
-cd pos
+git clone https://github.com/undg/los
+cd los
 pnpm i los
 ```
 
