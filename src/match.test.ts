@@ -70,4 +70,13 @@ describe("Match", () => {
 			totalScore: 0,
 		});
 	});
+	it(`should not mutate values returned by get()`, () => {
+		const match = new Match([
+			{ name: "t1", score: 2 },
+			{ name: "t2", score: 5 },
+		]);
+		match.get().homeScore = 666;
+
+		expect(match.get().homeScore).toEqual(2);
+	});
 });
