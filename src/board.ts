@@ -64,4 +64,21 @@ export class Board {
 			(b) => `${b.homeTeam} ${b.homeScore} - ${b.awayTeam} ${b.awayScore}`,
 		);
 	}
+
+	getTeamTotalScore(team: string): number {
+		const board = [...this.#board.values()].map((b) => b.get());
+
+		const teamsMap = new Map<string, number>();
+		for (const match of board) {
+			const homeTeam = match.homeTeam;
+			const homeScore = match.homeScore + (teamsMap.get(homeTeam) ?? 0);
+			teamsMap.set(homeTeam, homeScore);
+
+			const awayTeam = match.awayTeam;
+			const awayScore = match.awayScore + (teamsMap.get(awayTeam) ?? 0);
+			teamsMap.set(awayTeam, awayScore);
+		}
+
+		return teamsMap.get("Team") ?? 0;
+	}
 }

@@ -197,4 +197,27 @@ describe("Board", () => {
 			]);
 		});
 	});
+
+	describe("getTeamTotalScore()", () => {
+		it("should be 9", () => {
+			const board = new Board();
+
+			board.add("Game1", [
+				{ name: "Team", score: 5 },
+				{ name: "b", score: 19 },
+			]);
+
+			board.add("Game2", [
+				{ name: "b", score: 19 },
+				{ name: "Team", score: 8 },
+			]);
+
+			board.add("Game3", [
+				{ name: "c", score: 9 },
+				{ name: "Team", score: 7 },
+			]);
+
+			expect(board.getTeamTotalScore("Team")).toEqual(20);
+		});
+	});
 });
