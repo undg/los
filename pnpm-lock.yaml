@@ -25,10 +25,10 @@ importers:
         version: 2.1.4(@types/node@22.8.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.6))(vitest@2.1.4)
       '@vitest/coverage-v8':
         specifier: ^2.1.4
-        version: 2.1.4(@vitest/browser@2.1.4(@types/node@22.8.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.6))(vitest@2.1.4))(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))
+        version: 2.1.4(@vitest/browser@2.1.4(@types/node@22.8.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.6))(vitest@2.1.4))(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))
       '@vitest/eslint-plugin':
         specifier: ^1.1.7
-        version: 1.1.7(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))
+        version: 1.1.7(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))
       console-fail-test:
         specifier: ^0.5.0
         version: 0.5.0
@@ -76,7 +76,7 @@ importers:
         version: 8.12.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)
       vitest:
         specifier: ^2.1.4
-        version: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
+        version: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
 
 packages:
 
@@ -919,6 +919,11 @@ packages:
   '@vitest/spy@2.1.4':
     resolution: {integrity: sha512-4JOxa+UAizJgpZfaCPKK2smq9d8mmjZVPMt2kOsg/R8QkoRzydHH1qHxIYNvr1zlEaFj4SXiaaJWxq/LPLKaLg==}
 
+  '@vitest/ui@2.1.4':
+    resolution: {integrity: sha512-Zd9e5oU063c+j9N9XzGJagCLNvG71x/2tOme3Js4JEZKX55zsgxhJwUgLI8hkN6NjMLpdJO8d7nVUUuPGAA58Q==}
+    peerDependencies:
+      vitest: 2.1.4
+
   '@vitest/utils@2.1.4':
     resolution: {integrity: sha512-MXDnZn0Awl2S86PSNIim5PWXgIAx8CIkzu35mBdSApUip6RFOGXBCf3YFyeEu8n1IHk4bWD46DeYFu9mQlFIRg==}
 
@@ -1583,6 +1588,9 @@ packages:
     peerDependenciesMeta:
       picomatch:
         optional: true
+
+  fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
 
   figures@6.1.0:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
@@ -3932,7 +3940,7 @@ snapshots:
       msw: 2.6.0(@types/node@22.8.6)(typescript@5.6.3)
       sirv: 3.0.0
       tinyrainbow: 1.2.0
-      vitest: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
+      vitest: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
       ws: 8.18.0
     transitivePeerDependencies:
       - '@types/node'
@@ -3941,7 +3949,7 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/coverage-v8@2.1.4(@vitest/browser@2.1.4(@types/node@22.8.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.6))(vitest@2.1.4))(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))':
+  '@vitest/coverage-v8@2.1.4(@vitest/browser@2.1.4(@types/node@22.8.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.6))(vitest@2.1.4))(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -3955,19 +3963,19 @@ snapshots:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
+      vitest: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
     optionalDependencies:
       '@vitest/browser': 2.1.4(@types/node@22.8.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.6))(vitest@2.1.4)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/eslint-plugin@1.1.7(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))':
+  '@vitest/eslint-plugin@1.1.7(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)))':
     dependencies:
       '@typescript-eslint/utils': 8.12.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)
       eslint: 9.14.0(jiti@2.4.0)
     optionalDependencies:
       typescript: 5.6.3
-      vitest: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
+      vitest: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
 
   '@vitest/expect@2.1.4':
     dependencies:
@@ -4003,6 +4011,18 @@ snapshots:
   '@vitest/spy@2.1.4':
     dependencies:
       tinyspy: 3.0.2
+
+  '@vitest/ui@2.1.4(vitest@2.1.4)':
+    dependencies:
+      '@vitest/utils': 2.1.4
+      fflate: 0.8.2
+      flatted: 3.3.1
+      pathe: 1.1.2
+      sirv: 3.0.0
+      tinyglobby: 0.2.10
+      tinyrainbow: 1.2.0
+      vitest: 2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))
+    optional: true
 
   '@vitest/utils@2.1.4':
     dependencies:
@@ -4801,6 +4821,9 @@ snapshots:
   fdir@6.4.2(picomatch@4.0.2):
     optionalDependencies:
       picomatch: 4.0.2
+
+  fflate@0.8.2:
+    optional: true
 
   figures@6.1.0:
     dependencies:
@@ -6333,7 +6356,7 @@ snapshots:
       '@types/node': 22.8.6
       fsevents: 2.3.3
 
-  vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)):
+  vitest@2.1.4(@types/node@22.8.6)(@vitest/browser@2.1.4)(@vitest/ui@2.1.4)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3)):
     dependencies:
       '@vitest/expect': 2.1.4
       '@vitest/mocker': 2.1.4(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))(vite@5.4.10(@types/node@22.8.6))
@@ -6358,6 +6381,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.8.6
       '@vitest/browser': 2.1.4(@types/node@22.8.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.6))(vitest@2.1.4)
+      '@vitest/ui': 2.1.4(vitest@2.1.4)
     transitivePeerDependencies:
       - less
       - lightningcss
